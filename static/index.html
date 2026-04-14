@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Banker's Algorithm — Deadlock Prevention</title>
+  <link rel="stylesheet" href="/static/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Syne:wght@400;600;800&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <!-- ── HEADER ───────────────────────────────────── -->
+  <header class="site-header">
+    <div class="header-inner">
+      <div class="logo-block">
+        <span class="logo-icon">⬡</span>
+        <div>
+          <h1>Banker's Algorithm</h1>
+          <p class="subtitle">Deadlock Prevention Simulator</p>
+        </div>
+      </div>
+      <div class="header-tags">
+        <span class="tag">OS Project</span>
+        <span class="tag tag-accent">C + Python + Flask</span>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+
+    <!-- ── STEP 1: CONFIG ───────────────────────────── -->
+    <section class="card" id="config-section">
+      <div class="card-header">
+        <span class="step-badge">01</span>
+        <h2>System Configuration</h2>
+      </div>
+      <div class="config-grid">
+        <div class="field-group">
+          <label for="num-processes">Number of Processes</label>
+          <input type="number" id="num-processes" min="1" max="20" value="5" />
+        </div>
+        <div class="field-group">
+          <label for="num-resources">Number of Resource Types</label>
+          <input type="number" id="num-resources" min="1" max="20" value="3" />
+        </div>
+        <button class="btn btn-secondary" id="build-btn">
+          Build Matrices →
+        </button>
+      </div>
+      <div class="hint">Set counts, then click <strong>Build Matrices</strong> to generate input tables.</div>
+    </section>
+
+    <!-- ── STEP 2: INPUT MATRICES ───────────────────── -->
+    <section class="card hidden" id="matrix-section">
+      <div class="card-header">
+        <span class="step-badge">02</span>
+        <h2>Matrix Input</h2>
+      </div>
+
+      <!-- Available Resources -->
+      <div class="matrix-block">
+        <h3 class="matrix-title">
+          <span class="dot dot-green"></span>
+          Available Resources
+          <span class="matrix-hint">(R values — currently free)</span>
+        </h3>
+        <div id="available-table"></div>
+      </div>
+
+      <!-- Allocation Matrix -->
+      <div class="matrix-block">
+        <h3 class="matrix-title">
+          <span class="dot dot-blue"></span>
+          Allocation Matrix
+          <span class="matrix-hint">(P × R — currently held by each process)</span>
+        </h3>
+        <div id="allocation-table"></div>
+      </div>
+
+      <!-- Max Matrix -->
+      <div class="matrix-block">
+        <h3 class="matrix-title">
+          <span class="dot dot-yellow"></span>
+          Maximum Demand Matrix
+          <span class="matrix-hint">(P × R — maximum each process may ever need)</span>
+        </h3>
+        <div id="max-table"></div>
+      </div>
+
+      <!-- Quick Fill Buttons -->
+      <div class="quick-fill-row">
+        <span class="quick-label">Quick fill:</span>
+        <button class="btn btn-ghost" id="fill-classic">Classic Example</button>
+        <button class="btn btn-ghost" id="fill-unsafe">Unsafe Example</button>
+        <button class="btn btn-ghost" id="clear-all">Clear All</button>
+      </div>
+
+      <button class="btn btn-primary" id="run-btn">
+        ▶ Run Banker's Algorithm
+      </button>
+    </section>
+
+    <!-- ── STEP 3: RESULTS ───────────────────────────── -->
+    <section class="card hidden" id="result-section">
+      <div class="card-header">
+        <span class="step-badge">03</span>
+        <h2>Results</h2>
+      </div>
+
+      <!-- Status banner -->
+      <div id="status-banner" class="status-banner"></div>
+
+      <!-- Need matrix -->
+      <div class="matrix-block" id="need-block">
+        <h3 class="matrix-title">
+          <span class="dot dot-purple"></span>
+          Need Matrix
+          <span class="matrix-hint">(Max − Allocation)</span>
+        </h3>
+        <div id="need-table"></div>
+      </div>
+
+      <!-- Safe sequence visual -->
+      <div id="sequence-block" class="hidden">
+        <h3 class="matrix-title">
+          <span class="dot dot-green"></span>
+          Safe Sequence
+        </h3>
+        <div id="sequence-visual" class="sequence-visual"></div>
+      </div>
+
+      <!-- Steps log -->
+      <div class="matrix-block" id="steps-block">
+        <h3 class="matrix-title toggle-btn" id="steps-toggle">
+          <span class="dot dot-blue"></span>
+          Intermediate Steps
+          <span class="chevron" id="chevron">▼</span>
+        </h3>
+        <div id="steps-log" class="steps-log"></div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <p>Banker's Algorithm · Deadlock Prevention · OS Project</p>
+    <p class="footer-stack">C  ·  Python Flask  ·  HTML / CSS / JS</p>
+  </footer>
+
+  <script src="/static/script.js"></script>
+</body>
+</html>
