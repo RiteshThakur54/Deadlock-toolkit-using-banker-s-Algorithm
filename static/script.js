@@ -404,3 +404,4 @@ function showError(msg) {
 
   section.scrollIntoView({ behavior: "smooth", block: "start" });
 }
+reset form logic added
