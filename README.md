@@ -1,7 +1,7 @@
 # Banker's Algorithm — Deadlock Prevention
 ### OS Project | C + Python Flask + HTML/CSS/JS
 
---- 
+-----
 
 ## 📁 Folder Structure
 
